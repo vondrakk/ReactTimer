@@ -25073,11 +25073,11 @@
 	        if (typeof weather.data === 'string') {
 	          that.setState({ err: weather.data, isLoading: false });
 	        } else {
-	          that.setState({ err: weather.data.toString(), isLoading: false });
+	          that.setState({ err: weather.data.message, isLoading: false });
 	        }
 	      }
 	    }, function (err) {
-	      that.setState({ err: err.toString(), isLoading: false });
+	      that.setState({ err: err.message, isLoading: false });
 	    });
 	  },
 	  render: function render() {
@@ -26261,26 +26261,52 @@
 /* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 	
 	var React = __webpack_require__(8);
-	var ErrorMessage = React.createClass({
-	  displayName: "ErrorMessage",
+	var FA = __webpack_require__(227);
 	
+	var ErrorMessage = React.createClass({
+	  displayName: 'ErrorMessage',
+	
+	  componentDidMount: function componentDidMount() {
+	    var modal = new Foundation.Reveal($('#error-modal'));
+	    modal.open();
+	  },
 	  render: function render() {
 	    return React.createElement(
-	      "div",
-	      { className: "callout alert large" },
+	      'div',
+	      { className: 'reveal text-center', id: 'error-modal', 'data-reveal': true },
 	      React.createElement(
-	        "b",
+	        'h4',
+	        null,
+	        React.createElement(FA, { name: 'exclamation-circle' }),
+	        ' An Error has occurred.'
+	      ),
+	      React.createElement(
+	        'p',
 	        null,
 	        this.props.err
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
+	        React.createElement(
+	          'button',
+	          { className: 'close-button hollow', 'data-close': '', 'data-reveal': '', 'aria-label': 'Close modal' },
+	          React.createElement(
+	            'span',
+	            { 'aria-hidden': 'true' },
+	            '\xD7'
+	          )
+	        )
 	      )
 	    );
 	  }
 	});
 	
 	module.exports = ErrorMessage;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
 /* 240 */

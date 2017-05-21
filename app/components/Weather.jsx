@@ -26,12 +26,12 @@ var Weather = React.createClass({
           if (typeof(weather.data) === 'string') {
             that.setState({err: weather.data,isLoading: false});
           } else {
-            that.setState({err: weather.data.toString(),isLoading: false});
+            that.setState({err: weather.data.message,isLoading: false});
           }
         }
       },
       function(err) {
-        that.setState({err: err.toString(),isLoading: false});
+        that.setState({err: err.message,isLoading: false});
       }
     );
   },
