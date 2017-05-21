@@ -24947,7 +24947,6 @@
 	  },
 	  handleSearch: function handleSearch(city) {
 	    var that = this;
-	    debugger;
 	    this.setState({ isLoading: true });
 	    openWeatherMapApi.getCurrentWeather(city).then(function (weather) {
 	      that.setState({
