@@ -112,6 +112,9 @@
 	__webpack_require__(272);
 	$(document).foundation();
 	
+	// App css
+	__webpack_require__(276);
+	
 	ReactDOM.render(React.createElement(
 	  Router,
 	  { history: hashHistory },
@@ -24957,7 +24960,7 @@
 	var Nav = React.createClass({
 	  displayName: 'Nav',
 	
-	  onSearch: function onSearch(e) {
+	  onSearch: function onSearch() {
 	    e.preventDefault();
 	    // this.props.handleSearch(this.refs.srch);
 	    alert(this.refs.city.value);
@@ -25018,7 +25021,7 @@
 	            React.createElement(
 	              'li',
 	              null,
-	              React.createElement('input', { type: 'search', ref: 'city', placeholder: 'Location' })
+	              React.createElement('input', { type: 'search', ref: 'city', placeholder: 'Search weather by city' })
 	            ),
 	            React.createElement(
 	              'li',
@@ -25095,7 +25098,7 @@
 	      null,
 	      React.createElement(
 	        'h1',
-	        { className: 'text-center' },
+	        { className: 'text-center page-title' },
 	        'Get Weather'
 	      ),
 	      React.createElement(WeatherForm, { onSearch: this.handleSearch }),
@@ -25132,7 +25135,7 @@
 	      React.createElement(
 	        'form',
 	        { onSubmit: this.onFormSubmit },
-	        React.createElement('input', { type: 'text', ref: 'city' }),
+	        React.createElement('input', { type: 'search', placeholder: 'Search weather by city', ef: 'city' }),
 	        React.createElement('br', null),
 	        React.createElement(
 	          'button',
@@ -29877,7 +29880,7 @@
 	      null,
 	      React.createElement(
 	        "h1",
-	        { className: "text-center" },
+	        { className: "text-center page-title" },
 	        "About"
 	      ),
 	      React.createElement(
@@ -30123,7 +30126,7 @@
 	      null,
 	      React.createElement(
 	        'h1',
-	        { className: 'text-center' },
+	        { className: 'text-center page-title' },
 	        'Examples'
 	      ),
 	      React.createElement(
@@ -30507,6 +30510,46 @@
 		if(oldSrc)
 			URL.revokeObjectURL(oldSrc);
 	}
+
+
+/***/ }),
+/* 276 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(277);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(275)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../../node_modules/css-loader/index.js!./app.css", function() {
+				var newContent = require("!!../../node_modules/css-loader/index.js!./app.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 277 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(274)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".page-title {\n  margin-top: 2.5rem;\n  margin-bottom: 2.5rem;\n}\n\ninput[type=search] {\n  box-shadow: none;\n}\n", ""]);
+	
+	// exports
 
 
 /***/ })

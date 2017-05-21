@@ -2,7 +2,7 @@ var React = require('react');
 var {Link, IndexLink} = require('react-router');
 
 var Nav = React.createClass({
-  onSearch: function(e) {
+  onSearch: function() {
     e.preventDefault();
     // this.props.handleSearch(this.refs.srch);
     alert(this.refs.city.value);
@@ -29,7 +29,7 @@ var Nav = React.createClass({
         <div className="top-bar-right">
           <form onSubmit={this.onSearch}>
             <ul className="menu">
-              <li><input type="search" ref="city" placeholder="Location"/></li>
+              <li><input type="search" ref="city" placeholder="Search weather by city"/></li>
               <li><button type="button" className="button">Get Weather</button></li>
             </ul>
           </form>

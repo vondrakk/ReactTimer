@@ -4,7 +4,7 @@ var About = React.createClass({
   render: function () {
     return (
       <div>
-        <h1 className="text-center">About</h1>
+        <h1 className="text-center page-title">About</h1>
         <div className="row">
           <div className="column small-centered">
             <img src="https://www.udemy.com/staticx/udemy/images/v5/logo-green.svg" width="80" height="26"/>
