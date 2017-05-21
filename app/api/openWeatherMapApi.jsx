@@ -6,14 +6,19 @@ module.exports = {
     var requestUrl = `${OPEN_WEATHER_MAP_URL}&q=${encodedCity}`;
     return axios.get(requestUrl).then(
       function(response) {
-        if (response.data.cod && response.data.message) {
+        debugger;
+        if (response.data.cod && response.data.name!==city) {
           // error
-          throw new Error(response.data.message);
+          var msg = 'Sorry! The OpenWeatherMap API did not recognize that location.';
+          if (response.data.name) {
+              msg+=' Did you mean {response.data.name}?';
+          }
+          return {success: false, data: msg};
         }
-        return response.data.main;
+        return {success: true, data: response.data.main};
       },
       function(response) {
-        throw new Error(response.data.message);
+        return {success: false, data: response};
       }
     );
   }

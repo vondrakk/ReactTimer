@@ -16,33 +16,40 @@ var Weather = React.createClass({
     this.setState({isLoading: true});
     openWeatherMapApi.getCurrentWeather(city).then(
       function(weather) {
-        that.setState({
-          isLoading: false,
-          city: city,
-          temperature: weather.temp
-        })
+        if (weather.success === true) {
+          that.setState({
+            isLoading: false,
+            city: city,
+            temperature: weather.temp
+          });
+        } else {
+          if (typeof(weather.data) === 'string') {
+            that.setState({err: weather.data,isLoading: false});
+          } else {
+            that.setState({err: weather.data.toString(),isLoading: false});
+          }
+        }
       },
       function(err) {
-        that.setState({err: err,isLoading: false});
+        that.setState({err: err.toString(),isLoading: false});
       }
     );
   },
   render: function () {
-    var {isLoading, city, temperature, err} = this.state;
-    function renderMessage() {
-      if (isLoading) {
+    function renderMessage(state) {
+      if (state.isLoading) {
         return <Loading/>;
-      } else if (err) {
-        return <ErrorMessage err={err}/>;
-      } else if (temperature && city) {
-        return <WeatherMessage temperature={temperature} city={city}/>;
+      } else if (state.err) {
+        return <ErrorMessage err={state.err}/>;
+      } else if (state.temperature && state.city) {
+        return <WeatherMessage temperature={state.temperature} city={state.city}/>;
       }
     }
     return (
       <div>
         <h1 className="text-center">Get Weather</h1>
         <WeatherForm onSearch={this.handleSearch}/>
-        {renderMessage()}
+        {renderMessage(this.state)}
       </div>
     );
   }

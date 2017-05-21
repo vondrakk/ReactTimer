@@ -25063,29 +25063,31 @@
 	    var that = this;
 	    this.setState({ isLoading: true });
 	    openWeatherMapApi.getCurrentWeather(city).then(function (weather) {
-	      that.setState({
-	        isLoading: false,
-	        city: city,
-	        temperature: weather.temp
-	      });
+	      if (weather.success === true) {
+	        that.setState({
+	          isLoading: false,
+	          city: city,
+	          temperature: weather.temp
+	        });
+	      } else {
+	        if (typeof weather.data === 'string') {
+	          that.setState({ err: weather.data, isLoading: false });
+	        } else {
+	          that.setState({ err: weather.data.toString(), isLoading: false });
+	        }
+	      }
 	    }, function (err) {
-	      that.setState({ err: err, isLoading: false });
+	      that.setState({ err: err.toString(), isLoading: false });
 	    });
 	  },
 	  render: function render() {
-	    var _state = this.state,
-	        isLoading = _state.isLoading,
-	        city = _state.city,
-	        temperature = _state.temperature,
-	        err = _state.err;
-	
-	    function renderMessage() {
-	      if (isLoading) {
+	    function renderMessage(state) {
+	      if (state.isLoading) {
 	        return React.createElement(Loading, null);
-	      } else if (err) {
-	        return React.createElement(ErrorMessage, { err: err });
-	      } else if (temperature && city) {
-	        return React.createElement(WeatherMessage, { temperature: temperature, city: city });
+	      } else if (state.err) {
+	        return React.createElement(ErrorMessage, { err: state.err });
+	      } else if (state.temperature && state.city) {
+	        return React.createElement(WeatherMessage, { temperature: state.temperature, city: state.city });
 	      }
 	    }
 	    return React.createElement(
@@ -25097,7 +25099,7 @@
 	        'Get Weather'
 	      ),
 	      React.createElement(WeatherForm, { onSearch: this.handleSearch }),
-	      renderMessage()
+	      renderMessage(this.state)
 	    );
 	  }
 	});
@@ -26266,15 +26268,13 @@
 	  displayName: "ErrorMessage",
 	
 	  render: function render() {
-	    var err = this.props.err;
-	
 	    return React.createElement(
 	      "div",
 	      { className: "callout alert large" },
 	      React.createElement(
 	        "b",
 	        null,
-	        err
+	        this.props.err
 	      )
 	    );
 	  }
@@ -26295,13 +26295,18 @@
 	    var encodedCity = encodeURIComponent(city);
 	    var requestUrl = OPEN_WEATHER_MAP_URL + '&q=' + encodedCity;
 	    return axios.get(requestUrl).then(function (response) {
-	      if (response.data.cod && response.data.message) {
+	      debugger;
+	      if (response.data.cod && response.data.name !== city) {
 	        // error
-	        throw new Error(response.data.message);
+	        var msg = 'Sorry! The OpenWeatherMap API did not recognize that location.';
+	        if (response.data.name) {
+	          msg += ' Did you mean {response.data.name}?';
+	        }
+	        return { success: false, data: msg };
 	      }
-	      return response.data.main;
+	      return { success: true, data: response.data.main };
 	    }, function (response) {
-	      throw new Error(response.data.message);
+	      return { success: false, data: response };
 	    });
 	  }
 	};
