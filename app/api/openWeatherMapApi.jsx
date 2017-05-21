@@ -11,7 +11,7 @@ module.exports = {
           // error
           var msg = 'Sorry! The OpenWeatherMap API did not recognize that location.';
           if (response.data.name) {
-              msg+=' Did you mean {response.data.name}?';
+              msg+=` Did you mean ${response.data.name}?`;
           }
           return {success: false, data: msg};
         }
