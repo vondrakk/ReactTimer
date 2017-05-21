@@ -4,10 +4,10 @@ var WeatherMessage = React.createClass({
   render: function () {
     var {temperature, city, err} = this.props;
     return (
-      <div>
-        <p>
+      <div className="callout success large">
+        <h4>
           The current temperature in {city} is {temperature} degrees.
-        </p>
+        </h4>
       </div>
     );
   }

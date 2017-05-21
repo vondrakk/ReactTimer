@@ -3,8 +3,8 @@ var ErrorMessage = React.createClass({
   render: function () {
     var {err} = this.props;
     return (
-      <div>
-        <b style="font-color:red">{err}</b>
+      <div className="callout alert large">
+        <b>{err}</b>
       </div>
     );
   }

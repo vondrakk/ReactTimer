@@ -25046,8 +25046,8 @@
 	
 	var React = __webpack_require__(8);
 	var WeatherForm = __webpack_require__(226);
-	var WeatherMessage = __webpack_require__(227);
-	var Loading = __webpack_require__(228);
+	var WeatherMessage = __webpack_require__(237);
+	var Loading = __webpack_require__(238);
 	var ErrorMessage = __webpack_require__(239);
 	var openWeatherMapApi = __webpack_require__(240);
 	
@@ -25091,6 +25091,11 @@
 	    return React.createElement(
 	      'div',
 	      null,
+	      React.createElement(
+	        'h1',
+	        { className: 'text-center' },
+	        'Get Weather'
+	      ),
 	      React.createElement(WeatherForm, { onSearch: this.handleSearch }),
 	      renderMessage()
 	    );
@@ -25107,6 +25112,7 @@
 	
 	var React = __webpack_require__(8);
 	var WeatherForm = __webpack_require__(226);
+	var FA = __webpack_require__(227);
 	
 	var WeatherForm = React.createClass({
 	  displayName: 'WeatherForm',
@@ -25128,8 +25134,9 @@
 	        React.createElement('br', null),
 	        React.createElement(
 	          'button',
-	          null,
-	          'Get Weather'
+	          { className: 'button hollow expanded' },
+	          React.createElement(FA, { name: 'search' }),
+	          ' Get Weather'
 	        )
 	      )
 	    );
@@ -25140,64 +25147,6 @@
 
 /***/ }),
 /* 227 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(8);
-	
-	var WeatherMessage = React.createClass({
-	  displayName: 'WeatherMessage',
-	
-	  render: function render() {
-	    var _props = this.props,
-	        temperature = _props.temperature,
-	        city = _props.city,
-	        err = _props.err;
-	
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'p',
-	        null,
-	        'The current temperature in ',
-	        city,
-	        ' is ',
-	        temperature,
-	        ' degrees.'
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = WeatherMessage;
-
-/***/ }),
-/* 228 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(8);
-	var FA = __webpack_require__(229);
-	
-	var Loading = React.createClass({
-	  displayName: 'Loading',
-	
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(FA, { name: 'spinner', pulse: true })
-	    );
-	  }
-	});
-	
-	module.exports = Loading;
-
-/***/ }),
-/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25214,11 +25163,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _propTypes = __webpack_require__(230);
+	var _propTypes = __webpack_require__(228);
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _screenReaderStyles = __webpack_require__(238);
+	var _screenReaderStyles = __webpack_require__(236);
 	
 	var _screenReaderStyles2 = _interopRequireDefault(_screenReaderStyles);
 	
@@ -25343,7 +25292,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 230 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -25370,17 +25319,17 @@
 	  // By explicitly using `prop-types` you are opting into new development behavior.
 	  // http://fb.me/prop-types-in-prod
 	  var throwOnDirectAccess = true;
-	  module.exports = __webpack_require__(231)(isValidElement, throwOnDirectAccess);
+	  module.exports = __webpack_require__(229)(isValidElement, throwOnDirectAccess);
 	} else {
 	  // By explicitly using `prop-types` you are opting into new production behavior.
 	  // http://fb.me/prop-types-in-prod
-	  module.exports = __webpack_require__(237)();
+	  module.exports = __webpack_require__(235)();
 	}
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ }),
-/* 231 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -25394,12 +25343,12 @@
 	
 	'use strict';
 	
-	var emptyFunction = __webpack_require__(232);
-	var invariant = __webpack_require__(233);
-	var warning = __webpack_require__(234);
+	var emptyFunction = __webpack_require__(230);
+	var invariant = __webpack_require__(231);
+	var warning = __webpack_require__(232);
 	
-	var ReactPropTypesSecret = __webpack_require__(235);
-	var checkPropTypes = __webpack_require__(236);
+	var ReactPropTypesSecret = __webpack_require__(233);
+	var checkPropTypes = __webpack_require__(234);
 	
 	module.exports = function(isValidElement, throwOnDirectAccess) {
 	  /* global Symbol */
@@ -25899,7 +25848,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ }),
-/* 232 */
+/* 230 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -25942,7 +25891,7 @@
 	module.exports = emptyFunction;
 
 /***/ }),
-/* 233 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -26003,7 +25952,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ }),
-/* 234 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -26018,7 +25967,7 @@
 	
 	'use strict';
 	
-	var emptyFunction = __webpack_require__(232);
+	var emptyFunction = __webpack_require__(230);
 	
 	/**
 	 * Similar to invariant but only logs a warning if the condition is not met.
@@ -26075,7 +26024,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ }),
-/* 235 */
+/* 233 */
 /***/ (function(module, exports) {
 
 	/**
@@ -26095,7 +26044,7 @@
 
 
 /***/ }),
-/* 236 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -26110,9 +26059,9 @@
 	'use strict';
 	
 	if (process.env.NODE_ENV !== 'production') {
-	  var invariant = __webpack_require__(233);
-	  var warning = __webpack_require__(234);
-	  var ReactPropTypesSecret = __webpack_require__(235);
+	  var invariant = __webpack_require__(231);
+	  var warning = __webpack_require__(232);
+	  var ReactPropTypesSecret = __webpack_require__(233);
 	  var loggedTypeFailures = {};
 	}
 	
@@ -26163,7 +26112,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ }),
-/* 237 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -26177,9 +26126,9 @@
 	
 	'use strict';
 	
-	var emptyFunction = __webpack_require__(232);
-	var invariant = __webpack_require__(233);
-	var ReactPropTypesSecret = __webpack_require__(235);
+	var emptyFunction = __webpack_require__(230);
+	var invariant = __webpack_require__(231);
+	var ReactPropTypesSecret = __webpack_require__(233);
 	
 	module.exports = function() {
 	  function shim(props, propName, componentName, location, propFullName, secret) {
@@ -26228,7 +26177,7 @@
 
 
 /***/ }),
-/* 238 */
+/* 236 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -26249,6 +26198,64 @@
 	module.exports = exports['default'];
 
 /***/ }),
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(8);
+	
+	var WeatherMessage = React.createClass({
+	  displayName: "WeatherMessage",
+	
+	  render: function render() {
+	    var _props = this.props,
+	        temperature = _props.temperature,
+	        city = _props.city,
+	        err = _props.err;
+	
+	    return React.createElement(
+	      "div",
+	      { className: "callout success large" },
+	      React.createElement(
+	        "h4",
+	        null,
+	        "The current temperature in ",
+	        city,
+	        " is ",
+	        temperature,
+	        " degrees."
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = WeatherMessage;
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(8);
+	var FA = __webpack_require__(227);
+	
+	var Loading = React.createClass({
+	  displayName: 'Loading',
+	
+	  render: function render() {
+	    return React.createElement(
+	      'h3',
+	      { className: 'callout large' },
+	      React.createElement(FA, { size: '2x', name: 'spinner', pulse: true })
+	    );
+	  }
+	});
+	
+	module.exports = Loading;
+
+/***/ }),
 /* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -26263,10 +26270,10 @@
 	
 	    return React.createElement(
 	      "div",
-	      null,
+	      { className: "callout alert large" },
 	      React.createElement(
 	        "b",
-	        { style: "font-color:red" },
+	        null,
 	        err
 	      )
 	    );
