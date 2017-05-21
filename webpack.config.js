@@ -32,7 +32,7 @@ module.exports = {
       openWeatherMapApi: 'app/api/openWeatherMapApi.jsx',
       Loading: 'app/components/Loading.jsx',
       ErrorMessage: 'app/components/ErrorMessage.jsx',
-      applicationStyles: 'app/styles/app.css',
+      applicationStyles: 'app/styles/app.scss',
     },
     extensions: ['','.js','.jsx']
   },
