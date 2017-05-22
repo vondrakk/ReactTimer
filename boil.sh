@@ -7,4 +7,6 @@ git init
 git add *
 git commit -ma "initial check-in"
 git push
-# heroku init tasks?
+# heroku init tasks
+heroku create
+git push heroku
