@@ -26750,12 +26750,19 @@
 	      seconds: 0
 	    };
 	  },
+	  handleCountdownComplete: function handleCountdownComplete() {
+	    if (Notification.permission !== "denied") {
+	      new Notification("Countdown timer complete.");
+	    }
+	  },
 	  countdown: function countdown() {
 	    this.setState({
 	      seconds: this.state.seconds - 1
 	    });
 	    if (this.state.seconds > 0) {
 	      setTimeout(this.countdown, 1000);
+	    } else {
+	      this.handleCountdownComplete();
 	    }
 	  },
 	  handleSetCountdown: function handleSetCountdown(strSeconds) {
@@ -26767,7 +26774,12 @@
 	      setTimeout(this.countdown, 1000);
 	    }
 	  },
-	  componentDidMount: function componentDidMount() {},
+	  componentDidMount: function componentDidMount() {
+	    // check if we have notification permission
+	    if (Notification.permission !== "denied") {
+	      Notification.requestPermission(function (permission) {});
+	    }
+	  },
 	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {},
 	  render: function render() {
 	    return React.createElement(
@@ -26800,6 +26812,7 @@
 	  onSubmit: function onSubmit(e) {
 	    e.preventDefault();
 	    this.props.onSetCountdown(this.refs.seconds.value);
+	    this.refs.seconds.value = '';
 	  },
 	  render: function render() {
 	    return React.createElement(

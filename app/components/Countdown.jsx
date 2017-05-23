@@ -7,12 +7,19 @@ var Countdown = React.createClass({
       seconds: 0
     };
   },
+  handleCountdownComplete: function () {
+    if (Notification.permission !== "denied") {
+      new Notification("Countdown timer complete.");
+    }
+  },
   countdown: function() {
     this.setState({
       seconds: this.state.seconds-1
     });
     if (this.state.seconds>0) {
       setTimeout(this.countdown,1000);
+    } else {
+      this.handleCountdownComplete();
     }
   },
   handleSetCountdown: function (strSeconds) {
@@ -25,6 +32,11 @@ var Countdown = React.createClass({
     }
   },
   componentDidMount: function() {
+    // check if we have notification permission
+    if (Notification.permission !== "denied") {
+      Notification.requestPermission(function (permission) {
+      });
+    }
   },
   componentWillReceiveProps: function(newProps) {
   },

@@ -9,6 +9,7 @@ var CountdownForm = React.createClass({
   onSubmit: function (e) {
     e.preventDefault();
     this.props.onSetCountdown(this.refs.seconds.value);
+    this.refs.seconds.value='';
   },
   render: function () {
     return (
