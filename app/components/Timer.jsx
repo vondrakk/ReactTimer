@@ -1,4 +1,5 @@
 var React = require('react');
+var Clock = require('Clock');
 
 var Timer = React.createClass({
   getInitialState: function () {
@@ -20,6 +21,7 @@ var Timer = React.createClass({
     return (
       <div>
         <h1 className="text-center page-title">Timer</h1>
+      <Clock/>
       </div>
     );
   }

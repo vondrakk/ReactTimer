@@ -1,16 +1,28 @@
 var React = require('react');
-
+var Clock = require('Clock');
+var CountdownForm = require('CountdownForm');
 var Countdown = React.createClass({
   getInitialState: function () {
     return {
-      isRunning: false
+      seconds: 0
     };
   },
-  handleSearch: function (city) {
-    var that = this;
+  countdown: function() {
     this.setState({
-      isRunning: true
+      seconds: this.state.seconds-1
     });
+    if (this.state.seconds>0) {
+      setTimeout(this.countdown,1000);
+    }
+  },
+  handleSetCountdown: function (strSeconds) {
+    if (strSeconds.match(/^[0-9]+$/)) {
+      var seconds = parseInt(strSeconds,10);
+      this.setState({
+        seconds: seconds
+      });
+      setTimeout(this.countdown,1000);
+    }
   },
   componentDidMount: function() {
   },
@@ -19,7 +31,8 @@ var Countdown = React.createClass({
   render: function () {
     return (
       <div>
-        <h1 className="text-center page-title">Countdown</h1>
+        <Clock totalSeconds={this.state.seconds}/>
+        <CountdownForm onSetCountdown={this.handleSetCountdown}/>
       </div>
     );
   }

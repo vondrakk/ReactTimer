@@ -1,7 +1,7 @@
 {
-  "name": "react-stub",
+  "name": "react-timer",
   "version": "1.0.0",
-  "description": "stub react app",
+  "description": "react timer app",
   "main": "index.js",
   "scripts": {
     "test": "karma start",
@@ -25,6 +25,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.23.1",
     "expect": "^1.14.0",
+    "expect-jsx": "^3.0.0",
     "foundation-sites": "6.2.0",
     "jquery": "^2.2.1",
     "karma": "^0.13.22",
@@ -35,6 +36,7 @@
     "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
     "node-sass": "^3.4.2",
+    "react-addons-test-utils": "^0.14.6",
     "sass-loader": "^3.1.2",
     "script-loader": "^0.6.1",
     "style-loader": "^0.13.0",

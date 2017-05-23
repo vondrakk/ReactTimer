@@ -1,24 +1,29 @@
 var React = require('react');
-var WeatherForm = require('WeatherForm');
 var FA = require('react-fontawesome');
 
-var WeatherForm = React.createClass({
-  onFormSubmit: function (e) {
-    e.preventDefault();
-    if (this.refs.city && typeof(this.refs.city.value)==='string' && this.refs.city.value.length>0) {
-      this.props.onSearch(this.refs.city.value);
-      this.refs.city.value='';
-    }
-  },  render: function () {
+var Clock = React.createClass({
+  getDefaultProps: function() {
+    totalSeconds: 0
+  },
+  propTypes: {
+    totalSeconds: React.PropTypes.number
+  },
+  formatSeconds: function (totalSeconds) {
+    var seconds = totalSeconds % 60;
+    var minutes = Math.floor(totalSeconds / 60);
+    ;
+    return ((minutes < 10) ? '0'+minutes : minutes) + ':' + ((seconds < 10) ? '0'+seconds : seconds);
+  },
+  render: function () {
+    var {totalSeconds} = this.props;
     return (
-      <div>
-        <form onSubmit={this.onFormSubmit}>
-          <input type="search" placeholder="Search weather by city" ref="city"/><br/>
-          <button className="button hollow expanded"><FA name="search"/> Get Weather</button>
-        </form>
+      <div className="clock">
+        <span className="clock-text">
+          {this.formatSeconds(totalSeconds)}
+        </span>
       </div>
     );
   }
 });
 
-module.exports = WeatherForm;
+module.exports = Clock;

@@ -7,7 +7,7 @@ var Main = React.createClass({
       <div>
         <Nav/>
         <div className="row">
-          <div className="column small-centered">
+          <div className="column small-centered medium-6 large-4">
             {this.props.children}
           </div>
         </div>
