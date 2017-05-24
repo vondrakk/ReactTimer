@@ -11,15 +11,4 @@ describe('CountdownForm', () => {
     expect(CountdownForm).toExist();
   });
 
-  describe('spy tests', () => {
-      it('should call onSubmit if form submitted', () => {
-        var spy = expect.createSpy();
-        var countdownForm = TestUtils.renderIntoDocument(<CountdownForm onSetCountdown={spy}/>);
-        var $el = $(ReactDOM.findDOMNode(countdownForm));
-        countdownForm.refs.seconds.value = '109';
-        TestUtils.Simulate.submit($el.find('form')[0]);
-        expect(spy).toHaveBeenCalledWith('109');
-      });
-  });
-
 })

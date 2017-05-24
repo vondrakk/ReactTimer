@@ -1,22 +1,20 @@
 var React = require('react');
 var Clock = require('Clock');
+var Controls = require('Controls');
 var CountdownForm = React.createClass({
-  getInitialState: function () {
-    return {
-      isRunning: false
-    };
-  },
-  onSubmit: function (e) {
-    e.preventDefault();
-    this.props.onSetCountdown(this.refs.seconds.value);
-    this.refs.seconds.value='';
+  handleClick: function (action) {
+    if (this.refs.seconds) {
+      // why is this event firing on load?
+      this.props.onSetCountdown(this.refs.seconds.value, action);
+      this.refs.seconds.value='';
+    }
   },
   render: function () {
     return (
       <div>
-        <form onSubmit={this.onSubmit} ref="form" className="countdown-form">
-          <input type="text" ref="seconds" placeholder="Enter time in seconds"/>
-          <button className="button expanded">Start</button>
+        <form ref="form" className="countdown-form">
+          <input className="seconds-input" type="text" ref="seconds" placeholder="Enter time in seconds"/>
+          <Controls onClick={this.handleClick} countdownStatus={this.props.countdownStatus}/>
         </form>
       </div>
     );

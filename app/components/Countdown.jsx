@@ -4,7 +4,8 @@ var CountdownForm = require('CountdownForm');
 var Countdown = React.createClass({
   getInitialState: function () {
     return {
-      seconds: 0
+      seconds: 0,
+      state: 'stop'
     };
   },
   handleCountdownComplete: function () {
@@ -13,22 +14,41 @@ var Countdown = React.createClass({
     }
   },
   countdown: function() {
-    this.setState({
-      seconds: this.state.seconds-1
-    });
-    if (this.state.seconds>0) {
-      setTimeout(this.countdown,1000);
-    } else {
-      this.handleCountdownComplete();
+    if (this.state.state=='run') {
+      this.setState({
+        seconds: this.state.seconds-1
+      });
+      if (this.state.seconds>0) {
+        setTimeout(this.countdown,1000);
+      } else {
+        this.handleCountdownComplete();
+      }
     }
   },
-  handleSetCountdown: function (strSeconds) {
-    if (strSeconds.match(/^[0-9]+$/)) {
-      var seconds = parseInt(strSeconds,10);
+  handleSetCountdown: function (strSeconds, action) {
+    if (action==='start') {
+      if (strSeconds.match(/^[0-9]+$/)) {
+        var seconds = parseInt(strSeconds,10);
+        this.setState({
+          seconds: seconds,
+          state: 'run'
+        });
+        setTimeout(this.countdown,1000);
+      } else if (this.state.seconds>0) {
+        this.setState({
+          state: 'run'
+        });
+        setTimeout(this.countdown,1000);
+      }
+    } else if (action==='clear') {
       this.setState({
-        seconds: seconds
+        seconds:0,
+        state: 'stop'
       });
-      setTimeout(this.countdown,1000);
+    } else if (action==='pause') {
+      this.setState({
+        state: 'pause'
+      });
     }
   },
   componentDidMount: function() {
@@ -44,7 +64,7 @@ var Countdown = React.createClass({
     return (
       <div>
         <Clock totalSeconds={this.state.seconds}/>
-        <CountdownForm onSetCountdown={this.handleSetCountdown}/>
+        <CountdownForm countdownStatus={this.state.state} onSetCountdown={this.handleSetCountdown}/>
       </div>
     );
   }
